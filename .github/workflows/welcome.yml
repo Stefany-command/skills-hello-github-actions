@@ -1,0 +1,21 @@
+name: Postar comentário de boas-vindas
+
+on:
+  pull_request:
+    types: [opened]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  welcome:
+    name: Postar comentário de boas-vindas
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comentar no Pull Request
+        run: gh pr comment "$PR_URL" --body "🎉 E aí, dev! Valeu por abrir esse PR. Estamos de olho e logo menos alguém revisa. Se liga nas boas práticas e bora codar bonito! 🚀"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+
+          PR_URL: ${{ github.event.pull_request.html_url }}
